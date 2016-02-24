@@ -1,6 +1,0 @@
-development:
-  adapter: postgresql
-  database: development
-  username: dayvough
-  password: 1234
-  host: localhost
