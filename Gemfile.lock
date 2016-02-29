@@ -40,6 +40,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  json
   pg
   rake
   sinatra
