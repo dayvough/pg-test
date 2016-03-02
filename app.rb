@@ -13,11 +13,23 @@ get '/' do
   "Hello world!".to_json
 end
 
-get '/users' do
+# Get All Users
+get '/users/?' do
   @users = User.all
   @users.to_json
 end
 
+# Get User
+get '/users/:id/?' do
+  @user = User.find_by(id: params[:id])
+  if !@user.nil?
+    @user.to_json
+  else
+    "User not found".to_json
+  end
+end
+
+# Add User
 post '/users/new' do
   @user = User.new(params[:user])
   if @user.save
@@ -25,4 +37,23 @@ post '/users/new' do
   else
     "Error"
   end
+end
+
+# Edit User
+patch '/users/:id/?' do
+  @user = User.find_by(id: params[:id])
+  if !@user.nil?
+    if !params[:user].nil?
+      @user.update(params[:user])
+      @user.to_json
+    else
+      "Wrong params".to_json
+    end
+  else
+    "User not found".to_json
+  end
+end
+
+not_found do
+  "Route not found!".to_json
 end
