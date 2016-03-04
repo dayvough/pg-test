@@ -19,6 +19,7 @@ describe 'Users' do
   it "should be able to make a user" do
     # make user
     # expect count to be 1
+    expect(User.count).to eq(7)
   end
 
   # TODO: Cleanup database everytime tests are run
