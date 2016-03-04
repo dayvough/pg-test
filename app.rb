@@ -3,7 +3,6 @@ require "sinatra/activerecord"
 require "json"
 require "./models/user"
 
-# set :database, ENV['DATABASE_URL'] || 'postgres://localhost/sinatratest'
 set :database, ENV['DATABASE_URL'] || 'postgres://localhost/sinatratest'
 
 before do

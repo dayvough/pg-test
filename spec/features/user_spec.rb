@@ -21,6 +21,7 @@ describe 'Users' do
   end
 
   it "shouldn't add a User with missing info" do
+    User.create(first_name: 'ABC')
     expect(User.count).to eq(0)
   end
 
