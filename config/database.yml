@@ -1,0 +1,11 @@
+development:
+  adapter: postgresql
+  database: sinatratest
+  host: localhost
+  min_messages: WARNING
+
+test:
+  adapter: postgresql
+  database: sinatratest
+  host: localhost
+  min_messages: WARNING

@@ -1,9 +1,8 @@
 require "sinatra"
 require "sinatra/activerecord"
 require "json"
+require "./config/environments"
 require "./models/user"
-
-set :database, ENV['DATABASE_URL'] || 'postgres://localhost/sinatratest'
 
 before do
   content_type :json
