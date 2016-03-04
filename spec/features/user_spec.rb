@@ -13,7 +13,15 @@ describe 'Users' do
   end
 
   it "should have no users at the start of the test" do
+    expect(User.count).to eq(0)
+  end
 
+  it "should be able to add a User with proper info" do
+    # expect(User.count).to eq(1)
+  end
+
+  it "shouldn't add a User with missing info" do
+    expect(User.count).to eq(0)
   end
 
 end
