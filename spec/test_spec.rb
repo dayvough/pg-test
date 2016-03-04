@@ -1,6 +1,7 @@
 require_relative '../app.rb'
 require 'rspec'
 require 'rack/test'
+require 'database_cleaner'
 
 set :environment, :test
 
@@ -19,8 +20,6 @@ describe 'Users' do
   it "should be able to make a user" do
     # make user
     # expect count to be 1
-    expect(User.count).to eq(7)
+    expect(User.count).to eq(0)
   end
-
-  # TODO: Cleanup database everytime tests are run
 end
