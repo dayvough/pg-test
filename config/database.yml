@@ -1,3 +1,4 @@
+# I'm still not sure which info here is redundant
 development:
   adapter: postgresql
   database: sinatra
