@@ -3,8 +3,6 @@ require 'rspec'
 require 'rack/test'
 require 'database_cleaner'
 
-set :environment, :test
-
 describe 'Users' do
   include Rack::Test::Methods
 

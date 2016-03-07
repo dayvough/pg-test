@@ -1,6 +1,6 @@
 development:
   adapter: postgresql
-  database: sinatratest
+  database: sinatra
   host: localhost
   min_messages: WARNING
 
