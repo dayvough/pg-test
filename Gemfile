@@ -5,7 +5,11 @@ gem "sinatra-activerecord"
 gem "pg"
 gem "rake"
 gem "json"
-gem "foreman"
+gem "paper_trail"
+
+group :development do
+  gem "foreman"
+end
 
 group :development, :test do
   gem "rspec"

@@ -42,7 +42,7 @@ describe 'Users' do
     expect(user.email).to eq('G@shirt.ly')
     expect(user.password).to eq('H')
     expect(user.api_key).to eq(user.last_name + user.first_name)
-    expect(user.version).to eq(1)
+    # expect(user.version).to eq(1)
   end
 
   # Checks if user count equals 3 and ID's progress naturally
@@ -68,10 +68,10 @@ describe 'Users' do
 
   context "with proper DB implementation" do
     it "should create a new record on a user edit" do
-      # user = User.create(first_name: 'Q', last_name: 'R', email: 'S@evil.corp', password: 'T')
-      # user.update(first_name: 'R')
-      # expect(user.first_name).to eq('R')
-      # expect(User.where(id: user.id).count).to eq(2)
+      user = User.create(first_name: 'Q', last_name: 'R', email: 'S@evil.corp', password: 'T')
+      user.update(first_name: 'R')
+      expect(user.first_name).to eq('R')
+      expect(User.where(id: user.id).count).to eq(1)
     end
 
     it "should create a new record on a user delete"

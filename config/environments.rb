@@ -9,6 +9,8 @@ configure :production, :development do
       :database => db.path[1..-1],
       :encoding => 'utf8'
   )
+
+  ActiveRecord::Base.raise_in_transactional_callbacks = true
 end
 
 configure :test do
@@ -22,4 +24,6 @@ configure :test do
       :database => db.path[1..-1],
       :encoding => 'utf8'
   )
+
+  ActiveRecord::Base.raise_in_transactional_callbacks = true
 end

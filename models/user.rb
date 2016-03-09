@@ -20,13 +20,14 @@ class EmailValidator < ActiveModel::EachValidator
 end
 
 class User < ActiveRecord::Base
+  has_paper_trail
   validates_presence_of :first_name, :last_name, :email, :password
   validates :email, email: true, uniqueness: true, on: :create
   after_save :init
-
+  
   def init
     self.user_id = self.id
-    self.version = 1
+    # self.version = 1
     self.api_key = self.last_name + self.first_name
   end
 

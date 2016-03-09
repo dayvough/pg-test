@@ -1,6 +1,7 @@
 require "sinatra"
 require "sinatra/activerecord"
 require "json"
+require "paper_trail"
 require "./config/environments"
 require "./models/user"
 
