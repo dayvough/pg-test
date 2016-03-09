@@ -9,6 +9,7 @@ gem "paper_trail"
 
 group :development do
   gem "foreman"
+  gem "shotgun"
 end
 
 group :development, :test do

@@ -10,7 +10,7 @@ before do
 end
 
 get '/' do
-  "Hello world!".to_json
+  "Hello world!!".to_json
 end
 
 # Get All Users
