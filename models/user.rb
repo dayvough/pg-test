@@ -1,6 +1,5 @@
 
 # User attributes:
-# -- user_id    : Integer
 # -- first_name : String
 # -- last_name  : String
 # -- email      : String
@@ -8,7 +7,6 @@
 # -- api_key    : String
 # -- created_at : DateTime
 # -- updated_at : DateTime
-# -- version    : Integer
 
 # Email Validator from ActiveRecord docs, called on "email: true"
 class EmailValidator < ActiveModel::EachValidator
@@ -19,20 +17,25 @@ class EmailValidator < ActiveModel::EachValidator
   end
 end
 
+# Password specification
+PASSWORD_FORMAT = /\A
+  (?=.{8,})          # Must contain 8 or more characters
+  (?=.*\d)           # Must contain a digit
+  (?=.*[a-z])        # Must contain a lower case character
+  (?=.*[A-Z])        # Must contain an upper case character
+  (?=.*[[:^alnum:]]) # Must contain a symbol
+/x
+
 class User < ActiveRecord::Base
-  has_paper_trail
   validates_presence_of :first_name, :last_name, :email, :password
   validates :email, email: true, uniqueness: true, on: :create
+  validates :password, format: {with: PASSWORD_FORMAT}, on: [:create, :update]
+
+  has_paper_trail
   after_save :init
   
   def init
     self.user_id = self.id
-    # self.version = 1
     self.api_key = self.last_name + self.first_name
   end
-
-  # Grabs the current user, creates a duplicate,
-  # and increments the duplicated version
-  # def update
-  # end
 end
