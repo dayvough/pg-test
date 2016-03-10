@@ -1,0 +1,12 @@
+machine:
+  environment:
+    SPEC_OPTS: '--format doc'
+    PGDATA: /var/lib/postgresql/9.4/main
+dependencies:
+  pre:
+    - sudo locale-gen sv_SE.UTF-8 
+    - sudo -E -u postgres /usr/lib/postgresql/9.4/bin/pg_ctl restart; sleep 1 
+database:
+  override:
+    - mv config/database.ci.yml config/database.yml
+    - bundle exec rake db:create db:schema:load --trace
