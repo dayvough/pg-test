@@ -10,7 +10,7 @@ before do
 end
 
 get '/' do
-  "Hello world!!".to_json
+  "Hello world!"
 end
 
 # Get All Users
@@ -25,7 +25,7 @@ get '/users/:id/?' do
   if !@user.nil?
     @user.to_json
   else
-    "User not found".to_json
+    "User not found"
   end
 end
 

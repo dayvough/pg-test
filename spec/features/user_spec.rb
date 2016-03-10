@@ -3,7 +3,7 @@ require 'rspec'
 require 'rack/test'
 require 'database_cleaner'
 
-describe 'Users' do
+describe 'User' do
   include Rack::Test::Methods
 
   def app
@@ -60,7 +60,14 @@ describe 'Users' do
   end
 
   it "should have a valid password" do
-
+    user = User.new(first_name: 'M', last_name: 'N', email: 'O@gov.ph', password: '123')
+    expect(user.save).to eq false
+    user = User.new(first_name: 'M', last_name: 'N', email: 'O@gov.ph', password: 'a2345678')
+    expect(user.save).to eq false
+    user = User.new(first_name: 'M', last_name: 'N', email: 'O@gov.ph', password: 'aB345678')
+    expect(user.save).to eq false
+    user = User.new(first_name: 'M', last_name: 'N', email: 'O@gov.ph', password: 'aB!45678')
+    expect(user.save).to eq true
   end
 
   it "shouldn't create a user with an existing email" do
@@ -75,23 +82,26 @@ describe 'Users' do
 
     it "should have another version on edit" do
       user.update(first_name: 'R')
-      expect(user.versions.size).to eq(2)
+      expect(user.versions.size).to eq 2
     end
 
     it "should have another version on delete" do
       user.destroy
-      expect(user.versions.size).to eq(2)
+      expect(user.versions.size).to eq 2
     end
 
     it "should reify correctly" do
-      expect(user.id).to eq(8)
-      expect(user.first_name).to eq('Q')
+      expect(user.id).to eq 9
+      expect(user.first_name).to eq 'Q'
       user.update(first_name: 'R')
       v = user.versions.last
       user = v.reify
-      expect(user.id).to eq(8)
-      expect(user.first_name).to eq('Q')
+      expect(user.id).to eq 9
+      expect(user.first_name).to eq 'Q'
     end
+  end
+
+  context "error messages" do
   end
 
 end

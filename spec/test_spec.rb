@@ -16,7 +16,7 @@ describe 'Users' do
   end
 
   it "should be able to make a user" do
-    User.create(first_name: 'A', last_name: 'B', email: 'C@example.com', password: 'D')
+    User.create(first_name: 'A', last_name: 'B', email: 'C@example.com', password: 'Password123!')
     expect(User.count).to eq(1)
   end
 end
