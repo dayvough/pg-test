@@ -1,0 +1,7 @@
+test:
+  strict: false
+  database: circle_ruby_test
+  adapter: postgresql
+  username: ubuntu
+  host: localhost
+  encoding: utf8

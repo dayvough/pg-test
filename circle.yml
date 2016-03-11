@@ -8,5 +8,5 @@ dependencies:
     - sudo -E -u postgres /usr/lib/postgresql/9.4/bin/pg_ctl restart; sleep 1 
 database:
   override:
-    # - mv config/database.ci.yml config/database.yml
+    - mv config/database.ci.yml config/database.yml
     - bundle exec rake db:create db:schema:load --trace
