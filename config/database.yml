@@ -7,6 +7,6 @@ development:
 
 test:
   adapter: postgresql
-  database: sinatratest
+  database: circle_test
   host: localhost
   min_messages: WARNING
