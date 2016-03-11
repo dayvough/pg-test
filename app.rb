@@ -55,5 +55,5 @@ patch '/users/:id/?' do
 end
 
 not_found do
-  "Route not found!".to_json
+  { :data => "Route not found" }.to_json
 end
