@@ -19,3 +19,7 @@ group :development, :test do
   gem "guard-rspec"
   gem "database_cleaner"
 end
+
+group :test do
+  gem 'rspec_junit_formatter', '0.2.2'
+end

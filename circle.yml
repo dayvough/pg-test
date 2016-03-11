@@ -2,7 +2,6 @@ machine:
   environment:
     SPEC_OPTS: '--format doc'
     PGDATA: /var/lib/postgresql/9.4/main
-    # DATABASE_URL: 'postgres://localhost/circle_test'
     DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
 dependencies:
   pre:
@@ -13,3 +12,6 @@ database:
     - mv config/database.ci.yml config/database.yml
     - bundle exec rake db:create db:schema:load --trace
     - bundle exec rake db:migrate
+test:
+  override:
+    - RAILS_ENV=test bundle exec rspec -r rspec_junit_formatter --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml
