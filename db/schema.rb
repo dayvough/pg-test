@@ -17,14 +17,11 @@ ActiveRecord::Schema.define(version: 20160308095817) do
   enable_extension "plpgsql"
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "password"
-    t.string   "api_key"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "password"
+    t.string "api_key"
   end
 
   create_table "versions", force: :cascade do |t|

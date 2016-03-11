@@ -36,7 +36,6 @@ describe 'User' do
     user = User.create(first_name: 'E', last_name: 'F', email: 'G@shirt.ly', password: 'Password123!')
     expect(User.count).to eq(1)
     expect(user.id).to eq(2)
-    expect(user.user_id).to eq(user.id)
     expect(user.first_name).to eq('E')
     expect(user.last_name).to eq('F')
     expect(user.email).to eq('G@shirt.ly')
