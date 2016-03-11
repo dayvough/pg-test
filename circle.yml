@@ -2,6 +2,7 @@ machine:
   environment:
     SPEC_OPTS: '--format doc'
     PGDATA: /var/lib/postgresql/9.4/main
+    DATABASE_URL: 'postgres//localhost/circle_test'
 dependencies:
   pre:
     - sudo locale-gen sv_SE.UTF-8 
