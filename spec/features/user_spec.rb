@@ -10,14 +10,11 @@ describe 'User' do
     Sinatra::Application
   end
 
-  it "should have no users at the start of the test" do
-    expect(User.count).to eq(0)
-  end
+  let(:user) { user = User.create(first_name: 'A', last_name: 'B', email: 'C@example.com', password: 'Password123!') }
 
-  it "should add a User with proper info" do
-    user = User.create(first_name: 'A', last_name: 'B', email: 'C@example.com', password: 'Password123!')
-    expect(User.count).to eq(1)
+  it "should have a user at the start of the test" do
     expect(user.id).to eq(1)
+    expect(User.count).to eq(1)
   end
 
   it "shouldn't add a User with missing info" do
@@ -40,7 +37,7 @@ describe 'User' do
     expect(user.last_name).to eq('F')
     expect(user.email).to eq('G@shirt.ly')
     expect(user.password).to eq('Password123!')
-    expect(user.api_key).to eq(user.last_name + user.first_name)
+    expect(user.api_key).not_to eq(nil)
   end
 
   # Checks if user count equals 3 and ID's progress naturally
@@ -69,6 +66,11 @@ describe 'User' do
     expect(user.save).to eq true
   end
 
+  it "should have a valid API key" do
+    expect(user.api_key).not_to be_nil
+    expect(user.api_key.length).to eq(32)
+  end
+
   it "shouldn't create a user with an existing email" do
     User.create(first_name: 'M', last_name: 'N', email: 'O@gov.ph', password: 'Password123!')
     User.create(first_name: 'M', last_name: 'N', email: 'O@gov.ph', password: 'Password123!')
@@ -77,8 +79,6 @@ describe 'User' do
 
   # Paper_trail doesn't make new records, it has a separate versions table
   context "and paper_trail" do
-    let(:user) { user = User.create(first_name: 'Q', last_name: 'R', email: 'S@evil.corp', password: 'Password123!') }
-
     it "should have another version on edit" do
       user.update(first_name: 'R')
       expect(user.versions.size).to eq 2
@@ -89,14 +89,24 @@ describe 'User' do
       expect(user.versions.size).to eq 2
     end
 
+    it "should restore to the previous version" do
+      expect(user.first_name).to eq 'A'
+      user.update(first_name: 'B')
+      expect(user.first_name).to eq 'B'
+      prev_user = user.previous_version
+      user = prev_user
+      user.save
+      expect(user.first_name).to eq 'A'
+    end
+
     it "should reify correctly" do
-      expect(user.id).to eq 9
-      expect(user.first_name).to eq 'Q'
+      expect(user.id).to eq 11
+      expect(user.first_name).to eq 'A'
       user.update(first_name: 'R')
       v = user.versions.last
       user = v.reify
-      expect(user.id).to eq 9
-      expect(user.first_name).to eq 'Q'
+      expect(user.id).to eq 11
+      expect(user.first_name).to eq 'A'
     end
   end
 

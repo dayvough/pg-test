@@ -35,6 +35,6 @@ class User < ActiveRecord::Base
   after_save :init
   
   def init
-    self.api_key = self.last_name + self.first_name
+    self.api_key = SecureRandom.hex
   end
 end
