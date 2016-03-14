@@ -13,6 +13,7 @@ group :development do
 end
 
 group :development, :test do
+  gem "git-deploy"
   gem "rspec"
   gem "rack-test"
   gem "guard"
