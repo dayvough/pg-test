@@ -10,7 +10,7 @@ before do
 end
 
 get '/' do
-  { :data => "Suh dude!" }.to_json
+  { :data => "Sup dude!" }.to_json
 end
 
 # Get All Users
