@@ -17,7 +17,7 @@ describe 'User requests' do
 
   it "should work" do
     get '/'
-    expect(json_response["data"]).to eq "Hello world!"
+    expect(json_response["data"]).to eq "Suh dude!"
     expect(last_response.status).to eq 200
   end
 
