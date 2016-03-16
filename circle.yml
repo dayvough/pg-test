@@ -20,5 +20,7 @@ deployment:
     branch: master
     heroku:
       appname: floating-shore-43884
+  production:
+    branch: master
     commands:
       - heroku rake db:migrate
