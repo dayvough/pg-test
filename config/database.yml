@@ -16,3 +16,5 @@ test:
 production:
   <<: *default
   database: shirtly_api
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASS'] %>
